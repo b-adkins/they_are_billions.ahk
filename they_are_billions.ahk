@@ -27,9 +27,24 @@ indexToCoords(i, j)
 
 ; Apparently, this speeds things up?
 SetControlDelay -1
-  
-ClickOnButton(i, j)
+
+; Make clicks relative
+; Assumes game is running fullscreen
+CoordMode, ToolTip, Screen
+
+
+; Variables for menu state machine
+; Keeps track of which menu is open based on what keys have been hit
+global active_menu = "colonists"
+global allowed_menus = ["none", "colonists", "resources", "electricity", "industry", "military", "defense", "soldiers", "engineering"]
+
+
+; Menu is optional
+ClickOnButton(i, j, menu)
 {
+    if(menu != "any" and menu != active_menu)
+      return
+
     pt := indexToCoords(i, j)
     x_ := pt[1]
     y_ := pt[2]
@@ -60,43 +75,46 @@ ClickOnButton(i, j)
     MouseMove, %mX%, %mY%, 0  ; Return cursor to old position
 }
 
-; Make clicks relative
-; Assume game is running fullscreen
-CoordMode, ToolTip, Screen
 
-; First draft: get a couple common hotkeys working at all
-; Second draft: implement state machine to dive into menus
+; Since the top-level menus already have hotkeys in-game, I just have to update the state machine
+RegisterOpenedMenu(menu)
+{
+  if(active_menu = "none")
+  {
+    active_menu := menu
+  }
+}
 
-; B for build, like in Starcraft
+; b for build, like in Starcraft
 b::Enter
-Tab::ClickOnButton(4, 0)
+Tab::
+    ClickOnButton(4, 0, "any")
+    active_menu := "none"
+return
 
-; ColonistsMenu - C
-e::ClickOnButton(0, 0) ; tEnt
-t::ClickOnButton(1, 0) ; coTtage
+; ColonistsMenu
+$c::
+    RegisterOpenedMenu("colonists")
+    Send c
+return
+e::ClickOnButton(0, 0, "colonists") ; tEnt
+t::ClickOnButton(1, 0, "colonists") ; coTtage
 ; Stone H_ouse
 
-; ResourcesMenu
-h::ClickOnButton(0, 0) ; Hunter
-f::ClickOnButton(1, 0) ; Fisherman
-w::ClickOnButton(2, 0) ; Wood
-q::ClickOnButton(0, 1) ; Quarry
-a::ClickOnButton(1, 1) ; f_A_rm
+; ResourcesMenu - R
+h::ClickOnButton(0, 0, "resources") ; Hunter
+f::ClickOnButton(1, 0, "resources") ; Fisherman
+w::ClickOnButton(2, 0, "resources") ; Wood
+q::ClickOnButton(0, 1, "resources") ; Quarry
+a::ClickOnButton(1, 1, "resources") ; f_A_rm
 
-; ElectricityMenu
-y::ClickOnButton(0, 0) ; Tesla tower (pYlon)
-m::ClickOnButton(1, 0) ; Mill
+; ElectricityMenu - E
+y::ClickOnButton(0, 0, "electricity") ; Tesla tower (pYlon)
+m::ClickOnButton(1, 0, "electricity") ; Mill
 ; A::ClickOnButton( , )  ; Advanced mill
 ; P::ClickOnButton( , )  ; Power plant
 
-; MilitaryMenu
-; G::ClickOnButton(, ) ; Great ballista
-; X::ClickOnButton(, ) ; eXecutor
-; S::ClickOnButton(, ) ; Shock
-; B::ClickOnButton(, ) ; Barracks (solider's center)
-; F::ClickOnButton(, ) ; Factory (engineering center)
-
-; IndustryMenu
+; IndustryMenu - I
 ; D::ClickOnButton( , ) ; woo_D workshop
 ; S::ClickOnButton( , ) ; Stone workshop
 ; F::ClickOnButton( , ) ; Foundry
@@ -104,7 +122,14 @@ m::ClickOnButton(1, 0) ; Mill
 ; M::ClickOnButton( , ) ; Market
 ; A::ClickOnButton( , ) ; bAnk
 
-; DefenseMenu
+; MilitaryMenu - M
+; G::ClickOnButton(, ) ; Great ballista
+; X::ClickOnButton(, ) ; eXecutor
+; S::ClickOnButton(, ) ; Shock
+; B::ClickOnButton(, ) ; Barracks (solider's center)
+; F::ClickOnButton(, ) ; Factory (engineering center)
+
+; DefenseMenu - D
 ; So much repetition, I went with a grid layout instead
 ; Q::ClickOnButton( , ) ; Wooden wall
 ; A::ClickOnButton( , ) ; Wooden tower
@@ -115,12 +140,12 @@ m::ClickOnButton(1, 0) ; Mill
 ; E::ClickOnButton( , ) ; Spikes
 ; D::ClickOnButton( , ) ; Barbed wire
 
-; SoldiersCenter
+; SoldiersCenter - 5. I like to bind my low-tech production to 5 and high tech to 6
 ; R::ClickOnButton() ; Ranger
 ; E::ClickOnButton() ; marinE (soldier)
 ; G::ClickOnButton() ; Ghost (sniper)
 
-; EngineeringCenter
+; EngineeringCenter - 6
 ; Y::ClickOnButton() ; pYro (lucifer)
 ; T::ClickOnButton() ; Thanatos
 ; G::ClickOnButton() ; Goliath (titan)
