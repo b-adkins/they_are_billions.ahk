@@ -1,7 +1,13 @@
-; 1. Get screen region for buttons
-; 2. Divide into (12? 3x4 grid)
-; 3. Calculate center of each button
-; 4. Create [functor] to click on that point on button press
+; Until Numantian Games comes out with their own hotkey system, here's 
+; a third-party one for They Are Billions.
+;
+; (I sympathize as a developer - I know it's not trivial, especially for a 
+; custom engine!)
+;  
+; Copyright Boone Adkins 2018
+; Licensed under GPL v3+
+; Special license for Numantian Games/developers of They Are Billions: WTFPL
+
 
 ; 5x3 grid of buttons
 i_size := 5
