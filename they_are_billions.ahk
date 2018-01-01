@@ -27,15 +27,18 @@ indexToCoords(i, j)
 
 ClickOnButton(i, j)
 {
-    x, y = indexToCoords(i, j)
-
+    p = indexToCoords(i, j)
+    x = p[0]
+    y = p[1]
+    
     ; Click in the center of each button
     x := x + dx/2
     y := y + dy/2 
 
     ; Quoted x and y required to call ControlClick
     ; See https://autohotkey.com/board/topic/51382-controlclick-variables/
-    ControlClick, % "x" x " y" y, WinTitle
+    ;ControlClick, % "x" x " y" y, WinTitle
+    Click, Left, x, y
 }
 
 ; First draft: get a couple common hotkeys working at all
@@ -54,7 +57,7 @@ Q::ClickOnButton(1, 0) ; Quarry
 A::ClickOnButton(1, 1) ; f_A_rm
 
 ; ElectricityMenu
-T::ClickOnButton(0, 0) ; Tesla tower
+Y::ClickOnButton(0, 0) ; Tesla tower (pYlon)
 M::ClickOnButton(1, 0) ; Mill
 ; A::ClickOnButton( , )  ; Advanced mill
 ; P::ClickOnButton( , )  ; Power plant
