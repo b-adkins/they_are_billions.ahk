@@ -14,8 +14,8 @@ i_size := 5
 j_size := 3
 
 ; Bounding corners of the grid of buttons
-; First draft: Take this from a screenshot
-; Second draft: Generate this from resolution?
+; First draft: manually get from a screenshot
+; Second draft: autogenerate from resolution?
 global x_min := 1325
 global y_min := 955
 global x_max := 1630
@@ -27,7 +27,6 @@ indexToCoords(i, j)
 {
    x := x_min + i*dx
    y := y_min + j*dy
-
    return [x, y]
 }
 
@@ -41,16 +40,13 @@ CoordMode, ToolTip, Screen
 
 ; Variables for menu state machine
 ; Keeps track of which menu is open based on what keys have been hit
-global active_menu = "colonists"
+global active_menu = "menu"
 global allowed_menus = ["none", "colonists", "resources", "electricity", "industry", "military", "defense", "soldiers", "engineering"]
 
 
 ; Menu is optional
-ClickOnButton(i, j, menu)
+ClickOnButton(i, j)
 {
-    if(menu != "any" and menu != active_menu)
-      return
-
     pt := indexToCoords(i, j)
     x_ := pt[1]
     y_ := pt[2]
@@ -82,7 +78,14 @@ ClickOnButton(i, j, menu)
 }
 
 
-; Since the top-level menus already have hotkeys in-game, I just have to update the state machine
+; Since the top-level menus already have hotkeys in-game, I just have to update
+; the state machine.
+;
+; This is meant to be a pass-through - it notes that the menu key has been hit, 
+; then passes the keypress to the game.
+;
+; At the moment, I don't have it implemented that way, thus this function that 
+; might seem a bit redundant.
 RegisterOpenedMenu(menu)
 {
   if(active_menu = "none")
@@ -91,60 +94,139 @@ RegisterOpenedMenu(menu)
   }
 }
 
-; b for build, like in Starcraft
-b::Enter
+;
+; Town hall menu
+;
+b::Enter  ; b for build, like in Starcraft
 Tab::
-    ClickOnButton(4, 0, "any")
+    ClickOnButton(4, 0)
     active_menu := "none"
 return
 
+;
 ; ColonistsMenu
+;
+#If active_menu = "none"
 $c::
     RegisterOpenedMenu("colonists")
     Send c
 return
-e::ClickOnButton(0, 0, "colonists") ; tEnt
-t::ClickOnButton(1, 0, "colonists") ; coTtage
-; Stone H_ouse
 
-; ResourcesMenu - R
-h::ClickOnButton(0, 0, "resources") ; Hunter
-f::ClickOnButton(1, 0, "resources") ; Fisherman
-w::ClickOnButton(2, 0, "resources") ; Wood
-q::ClickOnButton(0, 1, "resources") ; Quarry
-a::ClickOnButton(1, 1, "resources") ; f_A_rm
+#If active_menu = "colonists"
+t::ClickOnButton(0, 0) ; Tent
+#If active_menu = "colonists"
+c::ClickOnButton(1, 0) ; Cottage
+#If active_menu = "colonists"
+h::ClickOnButton(2, 0) ; stone House
 
-; ElectricityMenu - E
-y::ClickOnButton(0, 0, "electricity") ; Tesla tower (pYlon)
-m::ClickOnButton(1, 0, "electricity") ; Mill
-; A::ClickOnButton( , )  ; Advanced mill
-; P::ClickOnButton( , )  ; Power plant
+;
+; ResourcesMenu
+;
+#If active_menu = "none"
+$r::
+    RegisterOpenedMenu("resources")
+    Send r
+return
 
-; IndustryMenu - I
-; D::ClickOnButton( , ) ; woo_D workshop
-; S::ClickOnButton( , ) ; Stone workshop
-; F::ClickOnButton( , ) ; Foundry
-; W::ClickOnButton( , ) ; wareHouse
-; M::ClickOnButton( , ) ; Market
-; A::ClickOnButton( , ) ; bAnk
+#If active_menu = "resources"
+h::ClickOnButton(0, 0) ; Hunter
+#If active_menu = "resources"
+f::ClickOnButton(1, 0) ; Fisherman
+#If active_menu = "resources"
+w::ClickOnButton(2, 0) ; Wood
+#If active_menu = "resources"
+q::ClickOnButton(0, 1) ; Quarry
+#If active_menu = "resources"
+a::ClickOnButton(1, 1) ; f_A_rm
 
-; MilitaryMenu - M
-; G::ClickOnButton(, ) ; Great ballista
-; X::ClickOnButton(, ) ; eXecutor
-; S::ClickOnButton(, ) ; Shock
-; B::ClickOnButton(, ) ; Barracks (solider's center)
-; F::ClickOnButton(, ) ; Factory (engineering center)
+;
+; ElectricityMenu
+;
+#If active_menu = "none"
+$e::
+    RegisterOpenedMenu("electricity")
+    Send e
+return
 
-; DefenseMenu - D
-; So much repetition, I went with a grid layout instead
-; Q::ClickOnButton( , ) ; Wooden wall
-; A::ClickOnButton( , ) ; Wooden tower
-; Z::ClickOnButton( , ) ; Wooden gate
-; W::ClickOnButton( , ) ; Stone wall
-; S::ClickOnButton( , ) ; Stone tower
-; X::ClickOnButton( , ) ; Stone gate
-; E::ClickOnButton( , ) ; Spikes
-; D::ClickOnButton( , ) ; Barbed wire
+#If active_menu = "electricity"
+t::ClickOnButton(0, 0) ; Tesla tower
+#If active_menu = "electricity"
+w::ClickOnButton(0, 1) ; (Wind)mill
+; #If active_menu = "electricity"
+; a::ClickOnButton( , )  ; Advanced mill  ; Why would you?
+; #If active_menu = "electricity"
+; p::ClickOnButton( , )  ; Power plant  ; Don't use too often
+
+;
+; IndustryMenu
+;
+#If active_menu = "none"
+$i::
+    RegisterOpenedMenu("industry")
+    Send i
+return
+
+; #If active_menu = "industry"
+; d::ClickOnButton( , ) ; woo_D workshop
+; #If active_menu = "industry"
+; s::ClickOnButton( , ) ; Stone workshop
+; #If active_menu = "industry"
+; f::ClickOnButton( , ) ; Foundry
+; #If active_menu = "industry"
+; w::ClickOnButton( , ) ; Warehouse
+; #If active_menu = "industry"
+; m::ClickOnButton( , ) ; Market
+; #If active_menu = "industry"
+; a::ClickOnButton( , ) ; bAnk
+
+;
+; MilitaryMenu
+;
+#If active_menu = "none"
+$m::
+    RegisterOpenedMenu("military")
+    Send m
+return
+
+#If active_menu = "military"
+b::ClickOnButton(0, 0) ; Barracks (solider's center)
+#If active_menu = "military"
+g::ClickOnButton(0, 1) ; Great ballista
+; #If active_menu = "military"
+; x::ClickOnButton(, ) ; eXecutor
+#If active_menu = "military"
+s::ClickOnButton(1, 1) ; Shock
+; #If active_menu = "military"
+; f::ClickOnButton(, ) ; Factory (engineering center)
+
+;
+; DefenseMenu
+;
+#If active_menu = "none"
+$d::
+    RegisterOpenedMenu("defense")
+    ; Send d
+    ; Looks like the devs never implemented the key
+    ClickOnButton(2, 1)
+return
+
+; Too much repetition, I went with a grid layout instead
+#If active_menu = "defense"
+q::ClickOnButton(0, 0) ; Wooden wall
+#If active_menu = "defense"
+a::ClickOnButton(1, 0) ; Wooden tower
+#If active_menu = "defense"
+z::ClickOnButton(2, 0) ; Wooden gate
+#If active_menu = "defense"
+w::ClickOnButton(0, 1) ; Stone wall
+#If active_menu = "defense"
+s::ClickOnButton(1, 1) ; Stone tower
+#If active_menu = "defense"e
+x::ClickOnButton(2, 1) ; Stone gate
+; #If active_menu = "defense"
+; e::ClickOnButton( , ) ; Spikes
+; #If active_menu = "defense"
+; d::ClickOnButton( , ) ; Barbed wire
 
 ; SoldiersCenter - 5. I like to bind my low-tech production to 5 and high tech to 6
 ; R::ClickOnButton() ; Ranger
