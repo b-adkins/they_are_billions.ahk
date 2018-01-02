@@ -98,9 +98,11 @@ RegisterOpenedMenu(menu)
 ; Town hall menu
 ;
 b::Enter  ; b for build, like in Starcraft
-Tab::
+
+; A "back" button - returns to higher level menus
+$Tab::
     ClickOnButton(4, 0)
-    active_menu := "none"
+    active_menu := "none"   
 return
 
 ;
@@ -114,9 +116,7 @@ return
 
 #If active_menu = "colonists"
 t::ClickOnButton(0, 0) ; Tent
-#If active_menu = "colonists"
 c::ClickOnButton(1, 0) ; Cottage
-#If active_menu = "colonists"
 h::ClickOnButton(2, 0) ; stone House
 
 ;
@@ -130,13 +130,9 @@ return
 
 #If active_menu = "resources"
 h::ClickOnButton(0, 0) ; Hunter
-#If active_menu = "resources"
 f::ClickOnButton(1, 0) ; Fisherman
-#If active_menu = "resources"
 w::ClickOnButton(2, 0) ; Wood
-#If active_menu = "resources"
 q::ClickOnButton(0, 1) ; Quarry
-#If active_menu = "resources"
 a::ClickOnButton(1, 1) ; f_A_rm
 
 ;
@@ -150,11 +146,8 @@ return
 
 #If active_menu = "electricity"
 t::ClickOnButton(0, 0) ; Tesla tower
-#If active_menu = "electricity"
 w::ClickOnButton(0, 1) ; (Wind)mill
-; #If active_menu = "electricity"
 ; a::ClickOnButton( , )  ; Advanced mill  ; Why would you?
-; #If active_menu = "electricity"
 ; p::ClickOnButton( , )  ; Power plant  ; Don't use too often
 
 ;
@@ -166,18 +159,13 @@ $i::
     Send i
 return
 
-; #If active_menu = "industry"
+#If active_menu = "industry"
+w::ClickOnButton(0, 0) ; Warehouse
 ; d::ClickOnButton( , ) ; woo_D workshop
-; #If active_menu = "industry"
 ; s::ClickOnButton( , ) ; Stone workshop
-; #If active_menu = "industry"
-; f::ClickOnButton( , ) ; Foundry
-; #If active_menu = "industry"
-; w::ClickOnButton( , ) ; Warehouse
-; #If active_menu = "industry"
-; m::ClickOnButton( , ) ; Market
-; #If active_menu = "industry"
-; a::ClickOnButton( , ) ; bAnk
+f::ClickOnButton(2, 1) ; Foundry
+m::ClickOnButton(0, 2) ; Market
+a::ClickOnButton(1, 2) ; bAnk
 
 ;
 ; MilitaryMenu
@@ -190,13 +178,9 @@ return
 
 #If active_menu = "military"
 b::ClickOnButton(0, 0) ; Barracks (solider's center)
-#If active_menu = "military"
 g::ClickOnButton(0, 1) ; Great ballista
-; #If active_menu = "military"
 ; x::ClickOnButton(, ) ; eXecutor
-#If active_menu = "military"
 s::ClickOnButton(1, 1) ; Shock
-; #If active_menu = "military"
 ; f::ClickOnButton(, ) ; Factory (engineering center)
 
 ;
@@ -213,27 +197,28 @@ return
 ; Too much repetition, I went with a grid layout instead
 #If active_menu = "defense"
 q::ClickOnButton(0, 0) ; Wooden wall
-#If active_menu = "defense"
-a::ClickOnButton(1, 0) ; Wooden tower
-#If active_menu = "defense"
-z::ClickOnButton(2, 0) ; Wooden gate
-#If active_menu = "defense"
-w::ClickOnButton(0, 1) ; Stone wall
-#If active_menu = "defense"
+w::ClickOnButton(1, 0) ; Wooden tower
+e::ClickOnButton(2, 0) ; Wooden gate
+a::ClickOnButton(0, 1) ; Stone wall
 s::ClickOnButton(1, 1) ; Stone tower
-#If active_menu = "defense"e
-x::ClickOnButton(2, 1) ; Stone gate
-; #If active_menu = "defense"
+d::ClickOnButton(2, 1) ; Stone gate
 ; e::ClickOnButton( , ) ; Spikes
-; #If active_menu = "defense"
 ; d::ClickOnButton( , ) ; Barbed wire
 
+; Moved rotate to context-sensitive "r"
+$r::Tab
+
+
+;
 ; SoldiersCenter - 5. I like to bind my low-tech production to 5 and high tech to 6
+;
 ; R::ClickOnButton() ; Ranger
 ; E::ClickOnButton() ; marinE (soldier)
 ; G::ClickOnButton() ; Ghost (sniper)
 
+;
 ; EngineeringCenter - 6
+;
 ; Y::ClickOnButton() ; pYro (lucifer)
 ; T::ClickOnButton() ; Thanatos
 ; G::ClickOnButton() ; Goliath (titan)
