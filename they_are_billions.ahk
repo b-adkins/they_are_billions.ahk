@@ -44,7 +44,6 @@ global active_menu = "menu"
 global allowed_menus = ["none", "colonists", "resources", "electricity", "industry", "military", "defense", "soldiers", "engineering"]
 
 
-; Menu is optional
 ClickOnButton(i, j)
 {
     pt := indexToCoords(i, j)
@@ -117,7 +116,7 @@ return
 #If active_menu = "colonists"
 t::ClickOnButton(0, 0) ; Tent
 c::ClickOnButton(1, 0) ; Cottage
-h::ClickOnButton(2, 0) ; stone House
+s::ClickOnButton(2, 0) ; Stone house
 
 ;
 ; ResourcesMenu
@@ -133,7 +132,7 @@ h::ClickOnButton(0, 0) ; Hunter
 f::ClickOnButton(1, 0) ; Fisherman
 w::ClickOnButton(2, 0) ; Wood
 q::ClickOnButton(0, 1) ; Quarry
-a::ClickOnButton(1, 1) ; f_A_rm
+a::ClickOnButton(1, 1) ; fArm
 x::ClickOnButton(2, 1) ; oil platform (eXon-mobile, the oil company)
 
 ;
@@ -148,8 +147,6 @@ return
 #If active_menu = "electricity"
 t::ClickOnButton(0, 0) ; Tesla tower
 w::ClickOnButton(0, 1) ; (Wind)mill
-; a::ClickOnButton( , )  ; Advanced mill  ; Why would you?
-; p::ClickOnButton( , )  ; Power plant  ; Don't use too often
 
 ;
 ; IndustryMenu
@@ -162,7 +159,7 @@ return
 
 #If active_menu = "industry"
 w::ClickOnButton(0, 0) ; Warehouse
-; d::ClickOnButton( , ) ; woo_D workshop
+; d::ClickOnButton( , ) ; wooD workshop
 ; s::ClickOnButton( , ) ; Stone workshop
 f::ClickOnButton(2, 1) ; Foundry
 m::ClickOnButton(0, 2) ; Market
@@ -179,10 +176,11 @@ return
 
 #If active_menu = "military"
 b::ClickOnButton(0, 0) ; Barracks (solider's center)
-e::ClickOnButton(1, 0) ; Factory (engineering center)
+e::ClickOnButton(1, 0) ; Engineering center
 g::ClickOnButton(0, 1) ; Great ballista
-; x::ClickOnButton(, ) ; eXecutor
 s::ClickOnButton(1, 1) ; Shock
+ ; @todo Double-check this one is the correct position
+x::ClickOnButton(2, 1) ; eXecutor
 
 
 ;
@@ -198,14 +196,14 @@ return
 
 ; Too much repetition, I went with a grid layout instead
 #If active_menu = "defense"
-q::ClickOnButton(0, 0) ; Wooden wall
-w::ClickOnButton(1, 0) ; Wooden tower
-e::ClickOnButton(2, 0) ; Wooden gate
-a::ClickOnButton(0, 1) ; Stone wall
-s::ClickOnButton(1, 1) ; Stone tower
-d::ClickOnButton(2, 1) ; Stone gate
-f::ClickOnButton(0, 3) ; Spikes
-v::ClickOnButton(1, 3) ; Barbed wire
+q::ClickOnButton(0, 0) ; Q - wooden wall
+w::ClickOnButton(1, 0) ; W - wooden tower
+e::ClickOnButton(2, 0) ; E - wooden gate
+a::ClickOnButton(0, 1) ; A - stone wall
+s::ClickOnButton(1, 1) ; S - stone tower
+d::ClickOnButton(2, 1) ; D - stone gate
+f::ClickOnButton(0, 3) ; F - wood spikes
+v::ClickOnButton(1, 3) ; V - barbed wire
 
 ; ; Moved rotate to context-sensitive "r"
 ; $r::Tab
@@ -214,13 +212,13 @@ v::ClickOnButton(1, 3) ; Barbed wire
 ;
 ; SoldiersCenter - 5. I like to bind my low-tech production to 5 and high tech to 6
 ;
-; R::ClickOnButton() ; Ranger
-; E::ClickOnButton() ; marinE (soldier)
-; G::ClickOnButton() ; Ghost (sniper)
+; r::ClickOnButton() ; Ranger
+; e::ClickOnButton() ; marinE (soldier)
+; g::ClickOnButton() ; Ghost (sniper)
 
 ;
 ; EngineeringCenter - 6
 ;
-; Y::ClickOnButton() ; pYro (lucifer)
-; T::ClickOnButton() ; Thanatos
-; G::ClickOnButton() ; Goliath (titan)
+; y::ClickOnButton() ; pYro (lucifer)
+; t::ClickOnButton() ; Thanatos
+; g::ClickOnButton() ; Goliath (titan)

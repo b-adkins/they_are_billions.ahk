@@ -1,38 +1,1 @@
-Tent
-Cottage
-stone House
-Hunter
-Fisherman
-Wood
-Quarry
-f_A_rm
-oil platform (eXon-mobile, the oil company)
-Tesla tower
-(Wind)mill
-Why would you?
-Don't use too often
-Warehouse
-woo_D workshop
-Stone workshop
-Foundry
-Market
-bAnk
-Barracks (solider's center)
-Factory (engineering center)
-Great ballista
-eXecutor
-Shock
-Wooden wall
-Wooden tower
-Wooden gate
-Stone wall
-Stone tower
-Stone gate
-Spikes
-Barbed wire
-Ranger
-marinE (soldier)
-Ghost (sniper)
-pYro (lucifer)
-Thanatos
-Goliath (titan)
+# __H__otkey Reference##  __C__olonists Menu- __T__ent- __C__ottage- __S__tone house##  __R__esources Menu- __H__unter- __F__isherman- __W__ood- __Q__uarry- f__A__rm- oil platform (e__X__on-mobile, the oil company)##  __E__lectricity Menu- __T__esla tower- (__W__ind)mill##  __I__ndustry Menu- __W__arehouse- woo__D__ workshop- __S__tone workshop- __F__oundry- __M__arket- b__A__nk##  __M__ilitary Menu- __B__arracks (solider's center)- __E__ngineering center- __G__reat ballista- __S__hock- e__X__ecutor##  __D__efense MenuToo much repetition, I went with a grid layout instead- __Q__ - wooden wall- __W__ - wooden tower- __E__ - wooden gate- __A__ - stone wall- __S__ - stone tower- __D__ - stone gate- __F__ - wood spikes- __V__ - barbed wire
