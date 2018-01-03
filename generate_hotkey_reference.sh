@@ -10,6 +10,9 @@
 OUTFILE=hotkey_reference.md
 
 echo "# Hotkey Reference" > $OUTFILE
+echo "## General" >> $OUTFILE
+echo "- __B__ - build menu (same as clicking command center button or pressing enter)" >> $OUTFILE
+echo "- __ESC__ - return to build menu. This is your panic button!" >> $OUTFILE
 
 # grep matches a) menu titles and b) hotkey lines
 # sed 1) trims down to just the commented text

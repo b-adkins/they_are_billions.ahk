@@ -1,4 +1,7 @@
 # Hotkey Reference
+## General
+- __B__ - build menu (same as clicking command center button or pressing enter)
+- __ESC__ - return to build menu. This is your panic button!
 ##  Colonists Menu
 - __T__ ent
 - __C__ ottage
