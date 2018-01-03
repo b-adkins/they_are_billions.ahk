@@ -22,7 +22,7 @@
 - __S__ tone workshop
 - __F__ oundry
 - __M__ arket
-- b __A__ nk
+- __B__ ank
 ##  Military Menu
 - __B__arracks (solider's center)
 - __E__ngineering center

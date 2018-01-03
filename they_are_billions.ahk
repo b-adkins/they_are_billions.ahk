@@ -159,11 +159,11 @@ return
 
 #If active_menu = "industry"
 w::ClickOnButton(0, 0) ; Warehouse
-; d::ClickOnButton( , ) ; wooD workshop
+d::ClickOnButton(0, 1) ; wooD workshop
 ; s::ClickOnButton( , ) ; Stone workshop
 f::ClickOnButton(2, 1) ; Foundry
 m::ClickOnButton(0, 2) ; Market
-a::ClickOnButton(1, 2) ; bAnk
+b::ClickOnButton(1, 2) ; Bank
 
 ;
 ; MilitaryMenu
