@@ -100,7 +100,7 @@ RegisterOpenedMenu(menu)
 b::Enter  ; b for build, like in Starcraft
 
 ; A "back" button - returns to higher level menus
-$Tab::
+$Esc::
     ClickOnButton(4, 0)
     active_menu := "none"   
 return
@@ -134,6 +134,7 @@ f::ClickOnButton(1, 0) ; Fisherman
 w::ClickOnButton(2, 0) ; Wood
 q::ClickOnButton(0, 1) ; Quarry
 a::ClickOnButton(1, 1) ; f_A_rm
+x::ClickOnButton(2, 1) ; oil platform (eXon-mobile, the oil company)
 
 ;
 ; ElectricityMenu
@@ -178,10 +179,11 @@ return
 
 #If active_menu = "military"
 b::ClickOnButton(0, 0) ; Barracks (solider's center)
+e::ClickOnButton(1, 0) ; Factory (engineering center)
 g::ClickOnButton(0, 1) ; Great ballista
 ; x::ClickOnButton(, ) ; eXecutor
 s::ClickOnButton(1, 1) ; Shock
-; f::ClickOnButton(, ) ; Factory (engineering center)
+
 
 ;
 ; DefenseMenu
@@ -202,11 +204,11 @@ e::ClickOnButton(2, 0) ; Wooden gate
 a::ClickOnButton(0, 1) ; Stone wall
 s::ClickOnButton(1, 1) ; Stone tower
 d::ClickOnButton(2, 1) ; Stone gate
-; e::ClickOnButton( , ) ; Spikes
-; d::ClickOnButton( , ) ; Barbed wire
+f::ClickOnButton(0, 3) ; Spikes
+v::ClickOnButton(1, 3) ; Barbed wire
 
-; Moved rotate to context-sensitive "r"
-$r::Tab
+; ; Moved rotate to context-sensitive "r"
+; $r::Tab
 
 
 ;
