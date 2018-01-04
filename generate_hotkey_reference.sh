@@ -20,7 +20,7 @@ echo "- __ESC__ - return to build menu. This is your panic button!" >> $OUTFILE
 grep "ClickOnButton.*; .*[A-Z]*$\|^ *;.*Menu" they_are_billions.ahk | sed -e 's/^.*ClickOnButton.*; /- /' -e 's/Menu/ Menu/' -e 's/^;/## /' >> $OUTFILE
 
 # Emphasizes the captial character that is the hotkey
-sed -i -e 's!\([A-Z]\)!__\1__!' $OUTFILE
+sed -i -e 's!\([A-Z]\)! __\1__ !' $OUTFILE
 
 # @todo Find some way for this to not effect the menu headers but still include them, something like:
 # sed -i -e '/##/d;s!\([A-Z]\)!__\1__!' $OUTFILE
