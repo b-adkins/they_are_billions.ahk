@@ -81,5 +81,9 @@ Planned features for the next few releases - feel free to comment!
 ## Note on version numbering
 I figure this is going to be a short-lived project. Eventually (maybe they'll put it off now!) Numantian Games will finish adding hotkeys to They Are Billions. I estimate a few months to a year. And this is a small project with few features. So, two version numbers is plenty.
 
+## 0.95
+- Almost all the building hotkeyed
+- Esc now deselects a building that's attached to the cursor. Feels better when used to cancel a building that's selected but not placed.
+
 ## 0.9
 Initial. I started at this number because I feel the build is playable but with a couple game-breaking quirks that are tricky to get out of.
