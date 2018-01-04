@@ -100,6 +100,7 @@ b::Enter  ; b for build, like in Starcraft
 
 ; A "back" button - returns to higher level menus
 $Esc::
+    Click, right ; If player has building on the button, cancels it
     ClickOnButton(4, 0)
     active_menu := "none"   
 return
@@ -176,9 +177,11 @@ return
 
 #If active_menu = "military"
 b::ClickOnButton(0, 0) ; Barracks (solider's center)
-e::ClickOnButton(1, 0) ; Engineering center
 g::ClickOnButton(0, 1) ; Great ballista
-s::ClickOnButton(1, 1) ; Shock
+t::ClickOnButton(0, 2) ; lookout (Telescope) tower
+r::ClickOnButton(1, 2) ; Radar tower
+e::ClickOnButton(1, 0) ; Engineering center
+s::ClickOnButton(1, 1) ; Shock tower
  ; @todo Double-check this one is the correct position
 x::ClickOnButton(2, 1) ; eXecutor
 
@@ -214,7 +217,8 @@ v::ClickOnButton(1, 3) ; V - barbed wire
 ;
 ; r::ClickOnButton() ; Ranger
 ; e::ClickOnButton() ; marinE (soldier)
-; g::ClickOnButton() ; Ghost (sniper)
+; Sniper is more popular in the metagame, so it gets the easier hotkey
+; s::ClickOnButton() ; Sniper  
 
 ;
 ; EngineeringCenter - 6

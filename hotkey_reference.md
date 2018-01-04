@@ -24,10 +24,12 @@
 - __M__ arket
 - __B__ ank
 ##  Military Menu
-- __B__arracks (solider's center)
-- __E__ngineering center
-- __G__reat ballista
-- __S__ hock
+-  __B__ arracks (solider's center)
+-  __G__ reat ballista
+- lookout ( __T__ elescope) tower
+-  __R__ adar tower
+-  __E__ ngineering center
+-  __S__ hock tower
 - e __X__ ecutor
 ##  Defense Menu
 Too much repetition, I went with a grid layout instead
