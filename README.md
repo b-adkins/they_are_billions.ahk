@@ -40,12 +40,14 @@ All buildings are laid down with a sequence of three keys. They will be of the f
 - X is the menu hotkey (matches in-game tooltip)
 - Y is that building's hotkey. See the hotkey reference guide.
 
-ESC returns to the command center menu. (I wanted it to also function as "cancel", but that's trickier to implement.)
+ESC returns to the previous menu, the command center menu. (I wanted it to also function as "cancel", but that's trickier to implement.) B brings up the command center menu.
+
+Thus, if the hotkeys are doing something funny, you can hit ESC or B, whichever feels more natural and the hotkeys will do what you expect them to again! (I use both: Esc feels natural to me as a single press, when I've selected units; B feels natural to me when building, as part of a B-X-Y triplet.)
 
 ## Relation to Starcraft
 Hotkeys are heavily inspired by Starcraft 1 and 2. This means that:
 
-0) B for build (selects the command center)
+1) B for build (selects the command center)
 2) Hotkeys come from the name of the building
 3) Keys on the left-hand are preferred; thus letters can come from the middle of a word
 4) They sometimes use the Starcraft building name - e.g. B (Barracks) for Soldier Center
@@ -64,5 +66,20 @@ This script doesn't know about control groups! So if you exit a build menu by hi
 # License
 GPLv3+ for everybody except Numantian Games, who can do WTF they want with this code! <3
 
+# Roadmap
+Planned features for the next few releases - feel free to comment!
 
+## 1.1
+- Grid layout. I planned this with a lower priority, requested by [u/indiez](https://www.reddit.com/r/TheyAreBillions/comments/7ntzlw/i_added_hotkeys_to_the_game/ds4qdtn/)
+- Easier setup: script will figure out button pixel coordinates from your resolution. Hopefully this will be easy (scale factor). Otherwise, I'll have to go through each resolution and make a giant list for each case. (Send me your resolution and corner coordinates please!)
 
+## 1.0
+- When switching to units or buildings via control group, menu will switch to whatever you have told AutoHotKey you use that hotkey for. (E.g. I use 1 for my main army, 2 for my fast arm, and 5 for my soldier's center)
+- Will only change hotkeys for They Are Billions. Thus, you can Alt-Tab without any trickiness
+
+# Change Log
+## Note on version numbering
+I figure this is going to be a short-lived project. Eventually (maybe they'll put it off now!) Numantian Games will finish adding hotkeys to They Are Billions. I estimate a few months to a year. And this is a small project with few features. So, two version numbers is plenty.
+
+## 0.9
+Initial. I started at this number because I feel the build is playable but with a couple game-breaking quirks that are tricky to get out of.
