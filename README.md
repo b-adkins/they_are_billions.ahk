@@ -29,7 +29,13 @@ With AutoHotKey installed, just double click on the .ahk file! Depending on your
 
 (If you are leery of giving some software from the internet admin access, well, good for you! You should be leery! However, AutoHotKey has been out for a long time, is quite popular, and most importantly, is open-source. These combined mean that there has been plenty of time for people to judge the reliability and catch security issues while looking over the code.)
 
-I took away your in-game menu! If you need it, here's how to stop the hotkey script. Alt-Tab to windows and right click the green H icon. _Exit_ will close the hotkey script. _Suspend Hotkeys_ will temporarily disable it, to e.g. let you change settings or use a different program while Alt-Tabbed.
+ESC no longer activates the in-game menu! It's still there, you just have to click the button. Or, you can Alt-Tab out of the game and...
+
+## Disable the Script
+Here's how to stop the hotkey script. E.g. to type in Steam chat, or use other programs on your computer.
+
+1. Alt-Tab to windows and right click the green H icon.
+2. Click _Exit_ to close the hotkey script or _Suspend Hotkeys_ to temporarily disable it
 
 # Hotkey reference
 [Hotkey reference guide](hotkey_reference.md).
