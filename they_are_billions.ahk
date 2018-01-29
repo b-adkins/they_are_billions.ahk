@@ -41,7 +41,7 @@ CoordMode, ToolTip, Screen
 ; Variables for menu state machine
 ; Keeps track of which menu is open based on what keys have been hit
 global active_menu = "menu"
-global allowed_menus = ["none", "colonists", "resources", "electricity", "industry", "military", "defense", "soldiers", "engineering"]
+global allowed_menus = ["none", "colonists", "resources", "electricity", "industry", "military", "defense", "soldiers", "engineering", "building", "unit"]
 
 
 ClickOnButton(i, j)
@@ -91,6 +91,14 @@ RegisterOpenedMenu(menu)
   {
     active_menu := menu
   }
+  else if(menu = "soldiers")
+  {
+    active_menu := menu
+  }
+  else if(menu = "unit")
+  {
+    active_menu := "unit"
+  }
 }
 
 ;
@@ -106,7 +114,7 @@ $Esc::
 return
 
 ;
-; ColonistsMenu
+; Colonists Menu
 ;
 #If active_menu = "none"
 $c::
@@ -137,7 +145,7 @@ a::ClickOnButton(1, 1) ; fArm
 x::ClickOnButton(2, 1) ; oil platform (eXon-mobile, the oil company)
 
 ;
-; ElectricityMenu
+; Electricity Menu
 ;
 #If active_menu = "none"
 $e::
@@ -150,7 +158,7 @@ t::ClickOnButton(0, 0) ; Tesla tower
 w::ClickOnButton(0, 1) ; (Wind)mill
 
 ;
-; IndustryMenu
+; Industry Menu
 ;
 #If active_menu = "none"
 $i::
@@ -167,7 +175,7 @@ m::ClickOnButton(0, 2) ; Market
 b::ClickOnButton(1, 2) ; Bank
 
 ;
-; MilitaryMenu
+; Military Menu
 ;
 #If active_menu = "none"
 $m::
@@ -187,7 +195,7 @@ x::ClickOnButton(2, 1) ; eXecutor
 
 
 ;
-; DefenseMenu
+; Defense Menu
 ;
 #If active_menu = "none"
 $d::
@@ -212,17 +220,86 @@ v::ClickOnButton(1, 3) ; V - barbed wire
 ; $r::Tab
 
 
-;
-; SoldiersCenter - 5. I like to bind my low-tech production to 5 and high tech to 6
-;
-; r::ClickOnButton() ; Ranger
-; e::ClickOnButton() ; marinE (soldier)
-; Sniper is more popular in the metagame, so it gets the easier hotkey
-; s::ClickOnButton() ; Sniper  
+; Check that unit trainin hotkeys positions are right
 
 ;
-; EngineeringCenter - 6
+; Soldiers Center
 ;
-; y::ClickOnButton() ; pYro (lucifer)
-; t::ClickOnButton() ; Thanatos
-; g::ClickOnButton() ; Goliath (titan)
+#If active_menu = "soldiers"
+r::ClickOnButton(0, 0) ; Ranger
+e::ClickOnButton(1, 0) ; marinE (soldier)
+; Sniper is more popular in the metagame, so it gets the easier hotkey
+s::ClickOnButton(2, 0) ; Sniper  
+
+;
+; Engineering Center
+;
+#If active_menu = "engineering"
+y::ClickOnButton(0, 0) ; pYro (lucifer)
+t::ClickOnButton(1, 0) ; Thanatos
+g::ClickOnButton(2, 0) ; Goliath (titan)
+
+
+; End of conditional hotkeys. (You can select a control group from any menu)
+#If
+ 
+;
+; Control Group menus
+;
+; This is disabled by default because control group choices vary from player to player so much
+;
+; This will work well you use the same control groups for units and others for 
+; buildings the whole game. If you like changing control groups midway through 
+; the game, you'll have to Alt-Tab and edit this file when you do. What a pain.
+
+; I personally use 1-4 for armies...
+$1::
+    RegisterOpenedMenu("unit")
+    Send 1
+return
+
+$2::
+    RegisterOpenedMenu("unit")
+    Send 2
+return
+
+$3::
+    RegisterOpenedMenu("unit")
+    Send 3
+return
+
+$4::
+    RegisterOpenedMenu("unit")
+    Send 4
+return
+
+; ... and 5-0 for buildings
+$5::
+    RegisterOpenedMenu("soldiers")
+    Send 5
+return
+
+$6::
+    RegisterOpenedMenu("engineering")
+    Send 6
+return
+
+$7::
+    RegisterOpenedMenu("building")
+    Send 7
+return
+
+$8::
+    RegisterOpenedMenu("building")
+    Send 8
+return
+
+$9::
+    RegisterOpenedMenu("building")
+    Send 9
+return
+
+$0::
+    RegisterOpenedMenu("building")
+    Send 0
+return

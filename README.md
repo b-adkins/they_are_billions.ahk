@@ -6,13 +6,13 @@ Until Numantian Games comes out with their own hotkey system, here's a third-par
 
 I have been play testing this in my own games. There are still some quirks to work out (especially for less-used or late-game stuff), but I think it's playable enough to share!
 
-This is an [AutoHotKey](https://autohotkey.com/) script. AutoHotKey is an powerful and popular open-source program to modify your controls. AutoHotKey version 1.1.05+ required.
+This is an [AutoHotKey](https://autohotkey.com/) script. AutoHotKey is a powerful and popular open-source program to modify your controls. AutoHotKey version 1.1.05+ required.
 
 # Setup
 ## Install autohotkey
 [Download link](https://autohotkey.com/download/)
 
-## Customize the script
+## Mandatory: tell AutoHotKey where the buttons are
 You need to edit the script for your screen size. (Mine is a 2048x1152 monitor, so if that's what you use, you can keep the default values.)
 
 1. Take a screenshot of They Are Billions
@@ -24,6 +24,21 @@ You need to edit the script for your screen size. (Mine is a 2048x1152 monitor, 
 
 Yellow crosshairs mark the corner. Pixel coordinates of the mouse cursor are show in the marked box.
 
+## Optional: changing hotkey values
+Say you don't like the hotkey I assigned, that's great! Unfortunately, you'll have to do the teensiest bit of programming to switch them.
+
+Find the lines that looks like these. They're sorted by menu and well-commented.
+
+    b::ClickOnButton(0, 0) ; Barracks (solider's center)
+    g::ClickOnButton(0, 1) ; Great ballista
+    
+Just change that first letter! Make sure you leave it lower-case. E.g.
+
+    s::ClickOnButton(0, 0) ; Barracks (solider's center)
+    b::ClickOnButton(0, 1) ; Great ballista
+
+That's it!
+# Optional: changing control group assignmentsSince my Starcraft II days, with multiple-building selection, I've been able to use the same control groups for the entire game. I use 1-4 for armies and 5-0 for buildings. In They Are Billions, that's 5 for soldier's center and 6 for engineering center.You probably want something different. You will have to edit the script. Find the lines with the following form, towards the end.    $5::        RegisterOpenedMenu("soldiers")        Send 5    return    Change the menu to one of the values in the ```allowed_menus``` array. For instance:    $5::        RegisterOpenedMenu("units")        Send 5    returnIf it acts funny, double check that you typed everything in correctly! I don't have defensive programming around this yet.    
 # Usage
 With AutoHotKey installed, just double click on the .ahk file! Depending on your operating system, you might instead have to Run as Administrator. Right click on the .ahk file and select Run as Administrator.
 
@@ -80,7 +95,7 @@ Planned features for the next few releases - feel free to comment!
 - Easier setup: script will figure out button pixel coordinates from your resolution. Hopefully this will be easy (scale factor). Otherwise, I'll have to go through each resolution and make a giant list for each case. (Send me your resolution and corner coordinates please!)
 
 ## 1.0
-- When switching to units or buildings via control group, menu will switch to whatever you have told AutoHotKey you use that hotkey for. (E.g. I use 1 for my main army, 2 for my fast arm, and 5 for my soldier's center)
+- When switching to units or buildings via control group, menu will switch to whatever you have told AutoHotKey you use that hotkey for. (E.g. I use 1 for my main army, 2 for my fast army, and 5 for my soldier's center)
 - Will only change hotkeys for They Are Billions. Thus, you can Alt-Tab without any trickiness
 
 # Change Log
